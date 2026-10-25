@@ -4,24 +4,85 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Day in the Hutong</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <h1>A Day in the Hutong</h1>
-
-    <img id="scene" src="images/morning.jpg" alt="Hutong scene" width="600" />
-
-    <audio id="player">
-      <source src="audio/hutong.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <div>
-      <button id="playBtn">Play</button>
-      <button id="pauseBtn">Pause</button>
-      <button id="stopBtn">Stop</button>
+  <body class="morning">
+    <!-- Scene images: stacked on top of each other, only the "active" one is visible -->
+    <div id="scenes">
+      <img
+        id="scene-morning"
+        class="scene active"
+        src="images/morning.jpg"
+        alt="Hutong in the early morning"
+      />
+      <img
+        id="scene-day"
+        class="scene"
+        src="images/day.jpg"
+        alt="Hutong during the day"
+      />
+      <img
+        id="scene-evening"
+        class="scene"
+        src="images/evening.jpg"
+        alt="Hutong at dusk"
+      />
+      <img
+        id="scene-night"
+        class="scene"
+        src="images/night.jpg"
+        alt="Hutong at night"
+      />
     </div>
 
-    <p id="message">time: 0:00</p>
+    <main>
+      <p class="eyebrow">A soundscape of my hometown</p>
+      <h1>A Day in the <em>Hutong</em></h1>
+      <p class="subtitle">What a day back home sounds like.</p>
+
+      <!-- Caption that changes with the time of day -->
+      <p id="caption">Press play to begin.</p>
+
+      <!-- Soundscape (Part A). The default player is hidden; custom buttons control it. -->
+      <audio id="player" preload="auto">
+        <source src="audio/hutong.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+
+      <!-- Progress bar + time-of-day markers (click a marker to jump there) -->
+      <div id="timeline">
+        <div id="progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="markers">
+          <button class="marker active" data-scene="morning">Morning</button>
+          <button class="marker" data-scene="day">Afternoon</button>
+          <button class="marker" data-scene="evening">Evening</button>
+          <button class="marker" data-scene="night">Night</button>
+        </div>
+      </div>
+
+      <!-- Custom controls -->
+      <div id="controls">
+        <div class="buttons">
+          <button id="playBtn" class="primary">Play</button>
+          <button id="pauseBtn">Pause</button>
+          <button id="stopBtn">Stop</button>
+          <button id="volDownBtn">Vol −</button>
+          <button id="volUpBtn">Vol +</button>
+        </div>
+        <p id="message">0:00 &nbsp;·&nbsp; Vol 100%</p>
+      </div>
+    </main>
 
     <script src="script.js"></script>
   </body>
